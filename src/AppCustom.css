@@ -1,0 +1,35 @@
+.navy-color {
+  color: #1d2d50 !important;
+}
+
+.navy-bg {
+  background-color: #1d2d50 !important;
+}
+
+.biege-color {
+  color: #f5f1e6 !important;
+}
+
+.biege-bg {
+  background-color: #f5f1e6 !important;
+}
+
+.orange-color {
+  color: #da8e6b !important;
+}
+
+.orange-bg {
+  background-color: #da8e6b !important;
+}
+
+.responsive-container {
+  width: 100vw;
+}
+
+.chat-bg {
+  background: radial-gradient(
+    69.93% 81.74% at 52.95% 28.61%,
+    #65748f 0%,
+    #1d2d50 100%
+  );
+}
