@@ -94,7 +94,17 @@ body {
   background-color: #f5f1e6 !important;
   color: #000 !important;
   border: 1px solid #d9d9d9;
+  height: 3rem;
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+:where(.css-dev-only-do-not-override-txh9fw).ant-select-compact-item:not(.ant-select-compact-last-item).ant-select-compact-first-item>.ant-select-selector, :where(.css-dev-only-do-not-override-txh9fw).ant-select-compact-item:not(.ant-select-compact-last-item).ant-select-compact-first-item.ant-select-sm>.ant-select-selector, :where(.css-dev-only-do-not-override-txh9fw).ant-select-compact-item:not(.ant-select-compact-last-item).ant-select-compact-first-item.ant-select-lg>.ant-select-selector {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+  height: 3rem;
+  padding-left: 25px;
+  padding-top: 10px;
+  font-size: 16px;
 }
 
 .ant-select .ant-select-arrow {

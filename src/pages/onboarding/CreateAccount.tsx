@@ -40,7 +40,7 @@ const MobileView = () => {
 const DesktopView = () => {
   return (
     <div className="grid place-content-center w-screen">
-      <div className="px-10 w-full hidden sm:block">
+      <div className="px-10 w-[500px] hidden sm:block">
         <img src={ReachLogo} className="text-center" />
         <p className="font-bold text-[24px] flex-wrap w-[250px]">
           Create your account

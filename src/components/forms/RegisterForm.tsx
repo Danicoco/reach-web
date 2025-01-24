@@ -88,7 +88,7 @@ const RegisterForm = () => {
           <Select
             defaultValue="+1"
             className="bg-transparent"
-            style={{ width: "30%" }}
+            style={{ width: "30%", }}
             onSelect={(e) => setCountryCode(e)}
           >
             {allCountryCodes.map((code) => (
@@ -109,10 +109,6 @@ const RegisterForm = () => {
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
         </Space.Compact>
-        <p className="text-[10px] mt-3">
-          Enter your mobile number to receive one time verification and other
-          notifications
-        </p>
       </Form.Item>
 
       <Form.Item
