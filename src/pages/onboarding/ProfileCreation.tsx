@@ -4,8 +4,10 @@ import Button from "../../library/Button";
 import { useState } from "react";
 import SetupProfile from "../../components/forms/onboarding/Profile";
 import UserInterest from "../../components/forms/onboarding/Interest";
+import { useNavigate } from "react-router-dom";
 
 const ProfileCreation = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
 
   console.log({ step });
@@ -54,7 +56,7 @@ const ProfileCreation = () => {
 
           <Button
             className="my-8"
-            onClick={() => setStep((prev: number) => prev + 1)}
+            onClick={() => step === 3 ? navigate("/dashboard") : setStep((prev: number) => prev + 1)}
           >
             Proceed
           </Button>

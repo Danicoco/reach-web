@@ -74,8 +74,9 @@ const LoginForm = () => {
       <Form.Item>
         <Button
           block
-          htmlType="submit"
+          // htmlType="submit"
           // color="orange"
+          onClick={() => navigate("/dashbaord")}
           loading={mutation.isLoading}
         >
           Log in
