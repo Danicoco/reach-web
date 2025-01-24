@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Divider from "../../Divider";
 
 const UserInterest = () => {
@@ -46,7 +46,7 @@ const UserInterest = () => {
   const [selectedMusic, setSelectedMusic] = useState<string[]>([]);
   const [selectedGaming, setSelectedGaming] = useState<string[]>([]);
 
-  const onFinsih = () => {
+  useEffect(() => {
     const data = {
       selectedCategory,
       selectedSports,
@@ -54,7 +54,7 @@ const UserInterest = () => {
       selectedGaming
     }
     console.log(data);
-  }
+  }, [selectedCategory, selectedSports, selectedMusic, selectedGaming])
 
   return (
     <div>
