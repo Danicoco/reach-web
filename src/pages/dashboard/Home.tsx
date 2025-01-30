@@ -5,9 +5,15 @@ import Input from "../../library/Input";
 import { useState } from "react";
 import VideoList from "../../components/shared/VideoList";
 import AudioList from "../../components/shared/AudioList";
+import { useQuery } from "react-query";
+import { fetchMedia } from "../../server/assets";
 
 const Home = () => {
   const [section, setSection] = useState("video");
+
+  const { data } = useQuery(["media", section], () => fetchMedia(1, 10, section));
+
+  console.log(data);
 
   return (
     <Layout>
@@ -23,7 +29,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-5">
+        <div className="flex gap-5 sm:px-0 px-2">
           <p
             onClick={() => setSection("video")}
             className={`rounded-full px-5 py-2 ${

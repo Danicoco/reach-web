@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { processDefaults } from "./sideEffect";
+import { ProcessDefaults } from "./sideEffect";
 import ReachLogo from "../../assets/reach-logo.png";
 import OnboardingLayout from "../../components/OnboardingLayout";
 import RegisterForm from "../../components/forms/RegisterForm";
@@ -8,7 +8,7 @@ import RegisterForm from "../../components/forms/RegisterForm";
 const CreateAccount = () => {
   const navigate = useNavigate();
 
-  processDefaults(navigate);
+  ProcessDefaults(navigate);
   return (
     <>
       <div className="block sm:hidden">

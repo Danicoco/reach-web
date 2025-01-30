@@ -57,14 +57,14 @@ export const updateProfile = async (values: Partial<IUser>) => {
     return data?.data;
 }
 
-export const login = async (body: Pick<IUser, 'email' | 'password'>) => {
-    const { data } = await instance().post(`/v1/users/login`, body).catch(e => next(e));
+export const login = async (body: Partial<IUser>) => {
+    const { data } = await instance().post(`/v1/auth/login`, body).catch(e => next(e));
     return data?.data;
 }
 
 export const googleAuth = async (body: { credential: string; type: string }) => {
     const { data } = await instance().post(`/v1/users/google-auth`, body).catch(e => next(e));
-    return data?.data;
+    return data;
 }
 
 export const deactivateAccount = async () => {

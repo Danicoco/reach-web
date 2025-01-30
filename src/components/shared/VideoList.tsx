@@ -159,7 +159,7 @@ const VideoList = () => {
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-5">
+    <div className="grid sm:grid-cols-3 grid-cols-1 px-5 sm:px-0 gap-5">
       {videos.map((video) => (
         <div className="mt-5">
           <img src={video.img} />

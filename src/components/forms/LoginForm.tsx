@@ -3,15 +3,32 @@ import { useNavigate } from "react-router-dom";
 
 import Input from "../../library/Input";
 import Button from "../../library/Button";
+import { useMutation } from "react-query";
+import { login } from "../../server/user";
+import { addDays } from "date-fns";
 
 const LoginForm = () => {
   const navigate = useNavigate();
 
-  
+  const mutation = useMutation(login, {
+    onSuccess: (data) => {
+      localStorage.setItem("access", data);
+      localStorage.setItem("access-endTime", addDays(new Date(), 2).toISOString())
+      navigate("/dashboard")
+    },
+  });
+
+  const onFinish = (values: Partial<IUser>) => {
+    mutation.mutateAsync(values);
+  };
+
   return (
-    <Form layout="vertical" requiredMark={false}>
+    <Form layout="vertical" requiredMark={false} onFinish={onFinish}>
+      {mutation.error instanceof Error && (
+        <p className="text-red-600 font-bold text-center">{mutation.error.message}</p>
+      )}
       <Form.Item
-        name="email"
+        name="loginId"
         label={<p className="navy-color">Login ID</p>}
         rules={[
           { required: true, message: "Enter a login ID", type: "string" },
@@ -29,12 +46,7 @@ const LoginForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button
-          block
-          // htmlType="submit"
-          // color="orange"
-          onClick={() => navigate("/dashboard")}
-        >
+        <Button block htmlType="submit" loading={mutation.isLoading}>
           Log in
         </Button>
       </Form.Item>

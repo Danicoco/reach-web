@@ -1,7 +1,6 @@
 import { addDays } from "date-fns";
 import { io } from "socket.io-client";
 import axios, { AxiosError } from "axios";
-import { decryptData, encryptData } from "../helper";
 
 export const instance = (
   baseURL = import.meta.env.VITE_BACKEND_URL,
@@ -14,7 +13,7 @@ export const instance = (
     ...(stream && { responseType: "stream" }),
     headers: {
       "Content-Type": "application/json",
-      withCredentials: true,
+      // withCredentials: true,
       ...(token && {
         Authorization: `Bearer ${token}`,
       }),
@@ -22,29 +21,9 @@ export const instance = (
   });
 
   const methods = ["post", "patch", "put"];
-  base.interceptors.request.use((config) => {
-    if (methods.includes(config.method as string)) {
-      if (Object.values(config.data).length) {
-        const newData = JSON.stringify(config.data);
-        const decrypt = encryptData(newData);
-        config.data = {
-          payload: decrypt,
-        };
-      }
-    }
-
-    return config;
-  });
 
   !stream &&
     base.interceptors.response.use((config) => {
-      if (config.data) {
-        const newData = decryptData<string>(config.data.data);
-        config.data = {
-          ...config.data,
-          data: { ...JSON.parse(newData) },
-        };
-      }
       if (methods.includes(config.config.method as string)) {
         if (config.data) {
           if (config.data?.meta?.token) {

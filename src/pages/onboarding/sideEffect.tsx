@@ -2,7 +2,7 @@ import { isAfter } from "date-fns";
 import { useEffect } from "react";
 import { NavigateFunction } from "react-router-dom";
 
-export const processDefaults = (navigate: NavigateFunction) => {
+export const ProcessDefaults = (navigate: NavigateFunction) => {
   useEffect(() => {
     const token = localStorage.getItem("access");
     const endTime = localStorage.getItem("access-endTime");
@@ -11,7 +11,7 @@ export const processDefaults = (navigate: NavigateFunction) => {
       localStorage.clear();
       return;
     } else {
-      if (token) navigate("/chat");
+      if (token) navigate("/dashboard");
     }
-  }, []);
+  }, [navigate]);
 };

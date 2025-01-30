@@ -7,7 +7,7 @@ const Authenticated = () => {
   const endTime = localStorage.getItem("access-endTime");
   const dayDiff = endTime ? isAfter(new Date(endTime as string), new Date()) : null;
 
-  return !token && !dayDiff ? (
+  return token && dayDiff ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />

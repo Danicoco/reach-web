@@ -158,15 +158,15 @@ const AudioList = () => {
         },
       ];
   return (
-    <div className="grid grid-cols-2 gap-20">
+    <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-20 gap-5 px-5 sm:px-0">
       {audios.map(audio => (
         <div className="flex justify-between">
         <div className="flex gap-5">
             <img src={audio.img} className="h-[72px] w-[72px]" />
             <div>
-                <p>{audio.name}</p>
-                <p>{audio.channel}</p>
-                <div>
+                <p className="truncate text-sm">{audio.name}</p>
+                <p className="text-sm">{audio.channel}</p>
+                <div className="sm:block flex gap-2 text-xs">
                     <p>{audio.streams}</p>
                     <p>{audio.duration}</p>
                 </div>
