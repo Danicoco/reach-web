@@ -15,7 +15,7 @@ type Props = {
     | "black"
     | "danger"
     | "orange"
-    | "default";
+    | "default" | "none";
   dashboardHeight?: boolean;
 } & ButtonProps;
 
@@ -32,7 +32,7 @@ const Button = (props: Props) => {
     ...rest
   } = props;
   const bgColor =
-    (color === "white" && "bg-white") ||
+    (color === "white" && "bg-white border-black border-[1px] text-gray-900") ||
     (color === "orange" && "orange-bg text-white border-none") ||
     (color === "outline" &&
       "text-white bg-transparent border-[1px] border-white") ||

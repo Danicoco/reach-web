@@ -12,6 +12,25 @@ interface IAdmin extends DefaultAttributes {
   isActive: boolean;
 }
 
+interface IMedia {
+  coverPicture: string;
+  duration: number;
+  hasAdultActivity: boolean;
+  hasStreamed: boolean;
+  id: number;
+  isFavorite: boolean;
+  isSubscribed: boolean;
+  owner: string;
+  platform: string;
+  profilePicture: string;
+  itemId: string;
+  title: string;
+  totalNoStreams: number;
+  totalSubscribers: number;
+  type: "video" | "audio";
+  viewTime: number;
+}
+
 interface IUser extends DefaultAttributes {
   otp: string;
   meta: Meta;
@@ -23,6 +42,56 @@ interface IUser extends DefaultAttributes {
   phoneNumber: string;
   countryCode: string;
   isVerified: boolean;
+}
+
+interface IProfile {
+  profile: {
+    id: number;
+    name: string;
+    userName: string;
+    email: email;
+    bio: string;
+    DeletedAt: null;
+    authStrategy: "local" | "google";
+    created_at: string;
+    dob: string;
+    flaggedReason: string;
+    interests: string[];
+    isFlagged: boolean;
+    isVerified: boolean;
+    last_active: string;
+    phone: string;
+    points: string | null;
+    profilePicture: string;
+    referral_code: string;
+    reffered_by: number;
+    role: "user" | "admin";
+    streams: string | null;
+    subscribers: number | null;
+    wallet: {
+      DeletedAt: string | null;
+      created_at: string;
+      id: number;
+      initiatedTransactions: string;
+      receivedTransactions: string;
+      updated_at: string;
+      user: null;
+      userId: number;
+      walletBalance: number;
+      walletPreviousBalance: number;
+      walletType: string;
+      walletTypeId: number;
+    }[];
+  };
+  totalSubscribed: number;
+  totalSubscribers: number;
+  totalUploads: number;
+}
+
+type Asset = {
+    "title": string;
+    "limit": number;
+    "mediaCategoriesIds": number[]
 }
 
 interface IStore {

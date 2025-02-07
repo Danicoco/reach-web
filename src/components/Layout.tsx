@@ -19,12 +19,12 @@ const navigationData = [
   {
     icon: <Search />,
     name: "Search",
-    link: "/search",
+    link: "/explore",
   },
   {
     icon: <Bell />,
     name: "Notification",
-    link: "/notification",
+    link: "/notifications",
   },
   {
     icon: <User />,

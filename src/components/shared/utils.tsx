@@ -1,7 +1,7 @@
 import { composeSliderObj } from "../../utils/shared";
 
 export const composeSliderMarks = (options?: Array<string>, type?: string) => {
-  let values = { max: 10, min: 0, marks: {}, hasLetter: false };
+  const values = { max: 10, min: 0, marks: {}, hasLetter: false };
 
   if (type === "slider" && options?.length) {
       const hasLetters = options.filter((option) => isNaN(Number(option)));
@@ -31,4 +31,13 @@ export const composeSliderMarks = (options?: Array<string>, type?: string) => {
   }  
 
   return values;
+};
+
+export const formatCurrency = (amount: number, currency: string) => {
+	const formatter = new Intl.NumberFormat("en-US", {
+		style: "currency",
+		currency
+	});
+
+	return formatter.format(amount);
 };

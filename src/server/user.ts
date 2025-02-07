@@ -48,7 +48,7 @@ export const getOnboardingData = async () => {
 }
 
 export const getProfileData = async () => {
-    const { data } = await instance().get(`/v1/users/onboarding?isProfile=true`).catch(e => next(e));
+    const { data } = await instance().get(`/v1/user/profile`).catch(e => next(e));
     return data?.data;
 }
 

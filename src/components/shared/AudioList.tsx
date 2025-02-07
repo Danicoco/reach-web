@@ -1,183 +1,55 @@
-import VideoImage from "../../assets/video-image.png";
-import ProfilePics from "../../assets/google.png";
 import { MoreVertical } from "react-feather";
+import { useNavigate } from "react-router-dom";
+import Loading from "../Loading";
 
-const AudioList = () => {
-    const audios = [
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-        {
-          img: VideoImage,
-          profilePics: ProfilePics,
-          name: "Best places to travel for vacation",
-          channel: "Let's Travel",
-          streams: "10k streams",
-          duration: "1 day ago",
-        },
-      ];
+type Props = {
+  audios: IMedia[];
+  isLoading: boolean;
+};
+
+const AudioList = ({ audios, isLoading }: Props) => {
+  const navigate = useNavigate();
   return (
-    <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-20 gap-5 px-5 sm:px-0">
-      {audios.map(audio => (
-        <div className="flex justify-between">
-        <div className="flex gap-5">
-            <img src={audio.img} className="h-[72px] w-[72px]" />
-            <div>
-                <p className="truncate text-sm">{audio.name}</p>
-                <p className="text-sm">{audio.channel}</p>
-                <div className="sm:block flex gap-2 text-xs">
-                    <p>{audio.streams}</p>
-                    <p>{audio.duration}</p>
+    <div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        !audios?.length ?
+        <div className="flex justify-center items-center h-full">
+          <p>No audio added yet</p>
+        </div>
+        :
+        <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-20 gap-3 px-5 sm:px-0">
+          {audios.map((audio) => (
+            <div
+              key={audio.id}
+              className="flex justify-between"
+              onClick={() => navigate(`/dashboard/audio/${audio.id}`)}
+            >
+              <div className="flex gap-5 cursor-pointer">
+                <img
+                  src={audio.coverPicture}
+                  className="h-[72px] w-[72px] rounded-xl"
+                />
+                <div>
+                  <p className="truncate text-sm font-bold text-ellipsis">
+                    {audio.title}
+                  </p>
+                  <p className="text-sm">{audio.owner}</p>
+                  <div className="sm:block flex gap-2 text-xs">
+                    <p>{audio.totalNoStreams} streams</p>
+                    <p>{audio.duration} minutes</p>
+                  </div>
                 </div>
+              </div>
+
+              <MoreVertical fill="black" />
             </div>
+          ))}
         </div>
-
-        <MoreVertical fill="black" />
-        </div>
-      ))}
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default AudioList
+export default AudioList;

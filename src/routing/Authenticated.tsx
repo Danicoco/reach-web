@@ -5,7 +5,7 @@ const Authenticated = () => {
   const location = useLocation();
   const token = localStorage.getItem("access");
   const endTime = localStorage.getItem("access-endTime");
-  const dayDiff = endTime ? isAfter(new Date(endTime as string), new Date()) : null;
+  const dayDiff = endTime ? isAfter(new Date(endTime as string), new Date()) : false;
 
   return token && dayDiff ? (
     <Outlet />
