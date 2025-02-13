@@ -21,7 +21,7 @@ const MobileView = () => {
   return (
     <OnboardingLayout className="block sm:hidden">
       <h2 className="mt-5 text-[24px] font-bold text-black">We just sent you a code</h2>
-      <p className="mt-4">adedebayoadetifa01@gmail.com was sent a code, please enter the code to verify.</p>
+      <p className="mt-4">{localStorage.getItem("em-reach") || "Your email"} was sent a code, please enter the code to verify.</p>
 
       <div className="mt-5">
         <VerifyAccountForm />
@@ -35,7 +35,7 @@ const DesktopView = () => {
     <div className="grid place-content-center w-screen">
       <div className="py-5 px-10 w-[500px]">
         <h2 className="mt-5 text-[24px] font-bold">We just sent you a code</h2>
-        <p className="mt-4">adedebayoadetifa01@gmail.com was sent a code, please enter the code to verify.</p>
+        <p className="mt-4">{localStorage.getItem("em-reach") || "Your email"} was sent a code, please enter the code to verify.</p>
 
         <div className="mt-5">
           <VerifyAccountForm />

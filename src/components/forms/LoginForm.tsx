@@ -13,19 +13,26 @@ const LoginForm = () => {
   const mutation = useMutation(login, {
     onSuccess: (data) => {
       localStorage.setItem("access", data);
-      localStorage.setItem("access-endTime", addDays(new Date(), 2).toISOString())
+      localStorage.setItem("access-endTime", addDays(new Date(), 1).toISOString())
       navigate("/dashboard")
     },
+    onError: (e: Error) => {
+      console.log({ has: e.message.includes("not verified") })
+      if (e.message.includes("not verified")) {
+        navigate("/verify-account")
+      }
+    }
   });
 
   const onFinish = (values: Partial<IUser>) => {
+    localStorage.setItem('em-reach', values.email || "");
     mutation.mutateAsync(values);
   };
 
   return (
     <Form layout="vertical" requiredMark={false} onFinish={onFinish}>
       {mutation.error instanceof Error && (
-        <p className="text-red-600 font-bold text-center">{mutation.error.message}</p>
+        <p className="text-red-600 font-bold text-center capitalize">{mutation.error.message}</p>
       )}
       <Form.Item
         name="loginId"

@@ -1,23 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { format } from "date-fns";
 import { useMutation } from "react-query";
-import { Form, Select, Space } from "antd";
+import { useEffect, useState } from "react";
 import countryCodes from "country-codes-list";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-import { swapItems } from "../../helper";
-import { createAccount } from "../../server/user";
-import { isObjectDuplicate, saveCustomerDetails } from "../../utils/shared";
+import { DatePicker, Form, Select, Space } from "antd";
 
 import Input from "../../library/Input";
+import { swapItems } from "../../helper";
 import Button from "../../library/Button";
+import { createAccount } from "../../server/user";
+import { isObjectDuplicate, saveCustomerDetails } from "../../utils/shared";
 
 const { Option } = Select;
 
 const RegisterForm = () => {
   const navigate = useNavigate();
 
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [countryCode, setCountryCode] = useState("+1");
+  const [, setCountryCode] = useState("+1");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [allCountryCodes, setAllCountryCodes] = useState<any[]>([]);
 
   const mutation = useMutation(createAccount, {
@@ -28,13 +31,16 @@ const RegisterForm = () => {
     },
   });
 
-  const onFinish = () => {
-    const data = {
-      phoneNumber,
-      countryCode,
-    };
-
-    mutation.mutateAsync(data);
+  const onFinish = (values: Partial<IUser & { confirmPassword: string }>) => {
+    setError("");
+    values.dob = format(new Date(values.dob as string), "dd/MM/yyyy");
+    if (values.password !== values.confirmPassword) {
+      setError("Password does not match");
+      return;
+    }
+    delete values.confirmPassword
+    localStorage.setItem('em-reach', values.email || "");
+    mutation.mutateAsync(values);
   };
 
   useEffect(() => {
@@ -51,22 +57,22 @@ const RegisterForm = () => {
 
     setAllCountryCodes(uniqueArray);
   }, []);
-  
+
   return (
-    <Form layout="vertical" requiredMark={false} onFinish={onFinish}>
-      {mutation.error instanceof Error && (
-        <p className="text-red-600 text-sm text-center font-bold mb-1">
-          {mutation.error.message}
+    <Form layout="vertical" requiredMark={false} onFinish={onFinish} className="mb-5">
+      <div className="flex justify-center items-center text-red-900 font-bold">
+      {error || mutation.error instanceof Error && (
+        <p className="text-red-900 text-sm text-center font-bold my-2">
+          {error || mutation.error.message}
         </p>
       )}
+      </div>
       <Form.Item
-        name="email"
+        name="name"
         label={<p className="navy-color">Name</p>}
-        rules={[
-          { required: true, message: "Enter name", type: "string" },
-        ]}
+        rules={[{ required: true, message: "Enter name", type: "string" }]}
       >
-        <Input />
+        <Input placeholder="John Doe" />
       </Form.Item>
 
       <Form.Item
@@ -81,14 +87,14 @@ const RegisterForm = () => {
       </Form.Item>
 
       <Form.Item
-        name="phoneNumber"
+        name="phone"
         label={<p className="navy-color">Mobile Number</p>}
       >
         <Space.Compact className="w-full">
           <Select
             defaultValue="+1"
             className="bg-transparent"
-            style={{ width: "30%", }}
+            style={{ width: "30%" }}
             onSelect={(e) => setCountryCode(e)}
           >
             {allCountryCodes.map((code) => (
@@ -103,48 +109,56 @@ const RegisterForm = () => {
               </Option>
             ))}
           </Select>
-          <Input
-            style={{ width: "70%" }}
-            inputMode="numeric"
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
+          <Input style={{ width: "70%" }} inputMode="numeric" />
         </Space.Compact>
       </Form.Item>
 
       <Form.Item
         name="password"
         label={<p className="navy-color">Password</p>}
-        rules={[
-          { required: true, message: "Enter password", type: "string" },
-        ]}
+        rules={[{ required: true, message: "Enter password", type: "string" }]}
       >
-        <Input Password placeholder="***************" />
+        <Input
+          Password
+          placeholder="***************"
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </Form.Item>
 
       <Form.Item
         name="confirmPassword"
-        label={<p className="navy-color">Confirm Password</p>}
+        label={
+          <div className="flex justify-between w-full">
+            <p className="navy-color">Confirm Password</p>
+          </div>
+        }
         rules={[
           { required: true, message: "Enter password again", type: "string" },
         ]}
       >
-        <Input Password autoComplete="no" placeholder="***************" />
+        <Input
+        className={password && confirmPassword && password !== confirmPassword ? "border-red-500" : ""}
+          Password
+          autoComplete="no"
+          placeholder="***************"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
       </Form.Item>
 
       <Form.Item
-        name="confirmPassword"
+        name="dob"
         label={<p className="navy-color">Date Of Birth</p>}
         rules={[
-          { required: true, message: "Enter date of birth", type: "string" },
+          { required: true, message: "Enter date of birth", type: "date" },
         ]}
       >
-        <Input autoComplete="no" />
+        <DatePicker className="w-full h-12" />
       </Form.Item>
 
       <Button
         loading={mutation.isLoading}
         block
-        onClick={() => navigate("/verify-account")}
+        htmlType="submit"
       >
         Proceed
       </Button>

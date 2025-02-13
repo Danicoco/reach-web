@@ -80,10 +80,6 @@ const MobileView = ({ navigate }: Props) => {
       <div className=" p-5 rounded-lg">
         <LoginForm />
       </div>
-
-      <div className="mt-10">
-        <TermsCondition isLogin={true} navigate={navigate} />
-      </div>
     </OnboardingLayout>
   );
 };

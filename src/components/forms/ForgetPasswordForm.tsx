@@ -14,12 +14,12 @@ const ForgetPasswordForm = () => {
   const mutation = useMutation(forgetPassword, {
     retry: false,
     onSuccess: () => {
-      navigate("/reset-password?code=true");
+      navigate("/reset-password");
     },
   });
 
-  const onFinish = (values: Pick<IUser, "email">) => {
-    saveData("plps-01", values.email);
+const onFinish = (values: { loginId: string }) => {
+    saveData("plps-01", values.loginId);
     mutation.mutate(values);
   };
 
@@ -29,11 +29,10 @@ const ForgetPasswordForm = () => {
         <ServerError message={mutation.error.message} />
       )}
       <Form.Item
-        name="email"
+        name="loginId"
         label={<p className="navy-color">Email</p>}
         rules={[
-          { required: true, message: "Enter a valid email" },
-          { type: "email", message: "Enter a valid email" },
+          { required: true, message: "Enter a valid email", type: "email" },
         ]}
       >
         <Input />
@@ -42,8 +41,7 @@ const ForgetPasswordForm = () => {
       <Form.Item>
         <Button
           block
-          // htmlType="submit"
-          onClick={() => navigate("/reset-password?code=true")}
+          htmlType="submit"
           loading={mutation.isLoading}
         >
           Continue

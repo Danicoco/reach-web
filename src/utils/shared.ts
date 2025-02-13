@@ -63,11 +63,10 @@ export const saveCustomerDetails = (data: Partial<IUser>) => {
   return result;
 };
 
-export const saveData = <T>(key: string, data: T) => {
+export const saveData = (key: string, data: string) => {
   let result;
   try {
-    result = encryptData(stringifyJson(data));
-    localStorage.setItem(key, result);
+    localStorage.setItem(key, data);
   } catch (error) {
     result = "";
   }
@@ -75,12 +74,10 @@ export const saveData = <T>(key: string, data: T) => {
   return result;
 };
 
-export const getData = <T>(key: string): T | null => {
+export const getData = (key: string) => {
   let result;
   try {
-    const data = localStorage.getItem(key);
-    const ls = decryptData(String(data));
-    result = parseJson(ls as string) as T;
+    result = localStorage.getItem(key);
   } catch (error) {
     result = null;
   }
@@ -154,47 +151,6 @@ export const stripOffUrl = (url: string): Array<Record<string, string>> => {
   });
   return composeKeys;
 };
-
-export const composeChartObj = (
-  obj: Record<string, string>
-): Record<string, string> => {
-  let newObj;
-
-  if (obj) {
-    const entries = Object.entries(obj);
-
-    // Determine the number of properties to keep
-    const numPropertiesToKeep = Math.max(0, entries.length - 2);
-
-    // Create a new object with the desired properties
-    newObj = Object.fromEntries(entries.slice(0, numPropertiesToKeep));
-  }
-
-  // @ts-ignore
-  return newObj;
-};
-
-export const composeQuestionData = (
-  obj: Record<string, string>
-): Record<string, any> => {
-  const mergedObj = Object.keys(obj).reduce(
-    (result: Record<string, string>, key) => {
-      if (key.endsWith("-other")) {
-        const baseKey = key.replace("-other", "");
-        if (result[baseKey]) {
-          result[baseKey] += `, ${obj[key]}`;
-        }
-      } else {
-        result[key] = obj[key];
-      }
-      return result;
-    },
-    {}
-  );
-
-  return mergedObj;
-};
-
 export const composeSliderObj = (arr: Array<Record<string | number, any>>) =>
   arr.reduce((acc, obj) => {
     // Get the first property name in the object (assuming there's only one property per object)

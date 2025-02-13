@@ -1,5 +1,6 @@
 import { MoreVertical } from "react-feather";
 import Loading from "../Loading";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   videos: IMedia[];
@@ -7,6 +8,8 @@ type Props = {
 };
 
 const VideoList = ({ videos, isLoading }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <div>
       {isLoading ? (
@@ -18,7 +21,9 @@ const VideoList = ({ videos, isLoading }: Props) => {
       ) : (
         <div className="grid sm:grid-cols-3 grid-cols-1 px-5 sm:px-0 gap-5">
           {videos.map((video) => (
-            <div key={video.id} className="mt-5">
+            <div key={video.id} className="mt-5 cursor-pointer" 
+            onClick={() => navigate(`/dashboard/watch/${video.id}`)}
+            >
               <img
                 src={video.coverPicture}
                 className="w-[413px] h-[200px] rounded-xl"

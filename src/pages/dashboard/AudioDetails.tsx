@@ -7,7 +7,7 @@ import Button from "../../library/Button";
 import Navbar from "../../components/Navbar";
 import Layout from "../../components/Layout";
 import { PreloadTokenCheck } from "./effect";
-import StreamIcon from "../../assets/sound.svg"
+import StreamIcon from "../../assets/sound.svg";
 import PlayIcon from "../../assets/play-circle.png";
 import AudioList from "../../components/shared/AudioList";
 import {
@@ -85,10 +85,21 @@ const AudioDetails = () => {
 
         <div className="flex justify-between mt-10">
           <div className="flex gap-3">
-            <img
-              src={data?.profilePicture}
-              className="h-[50px] w-[50px] rounded-full"
-            />
+            {data?.profilePicture ? (
+              <img
+                src={data?.profilePicture}
+                className="h-[50px] w-[50px] rounded-full"
+              />
+            ) : (
+              <div className="h-[50px] w-[50px] rounded-full border-[1px] bg-[#6601FF]">
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-center text-white">
+                    {data?.owner?.split(" ")[0].charAt(0)}{" "}
+                    {data?.owner?.split(" ")[1].charAt(0)}
+                  </p>
+                </div>
+              </div>
+            )}
             <div>
               <p>{data?.owner}</p>
               <p>{data?.totalSubscribers} subscribers</p>
@@ -100,7 +111,7 @@ const AudioDetails = () => {
               disabled={data?.isSubscribed}
               color={data?.isSubscribed ? "white" : "none"}
             >
-              Subscribed
+              {data?.isSubscribed ? "Subscribed" : "Subscribe"}
             </Button>
             <Heart
               className="mt-1"

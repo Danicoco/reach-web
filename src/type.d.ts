@@ -34,6 +34,7 @@ interface IMedia {
 interface IUser extends DefaultAttributes {
   otp: string;
   meta: Meta;
+  dob: string;
   email: string;
   verifiedAt: Date;
   password: string;

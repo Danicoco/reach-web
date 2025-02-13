@@ -24,7 +24,7 @@ const AudioList = ({ audios, isLoading }: Props) => {
             <div
               key={audio.id}
               className="flex justify-between"
-              onClick={() => navigate(`/dashboard/audio/${audio.id}`)}
+              onClick={() => navigate(`/dashboard/listen/${audio.id}`)}
             >
               <div className="flex gap-5 cursor-pointer">
                 <img
