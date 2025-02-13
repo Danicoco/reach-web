@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Form } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +26,8 @@ const LoginForm = () => {
   });
 
   const onFinish = (values: Partial<IUser>) => {
-    localStorage.setItem('em-reach', values.email || "");
+    // @ts-ignore
+    localStorage.setItem('em-reach', values.loginId || "");
     mutation.mutateAsync(values);
   };
 
