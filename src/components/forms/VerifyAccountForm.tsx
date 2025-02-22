@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { resendOtp, verifyAccount } from "../../server/user";
 import { useEffect, useState } from "react";
+import { addDays } from "date-fns";
 
 const VerifyAccountForm = () => {
   const [pin, setPin] = useState("");
@@ -22,7 +23,12 @@ const VerifyAccountForm = () => {
   });
 
   const mutationVerify = useMutation(verifyAccount, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      localStorage.setItem("access", data);
+      localStorage.setItem(
+        "access-endTime",
+        addDays(new Date(), 1).toISOString()
+      );
       navigate("/onboarding");
     },
     onError: (e: Error) => {
@@ -31,7 +37,7 @@ const VerifyAccountForm = () => {
   });
 
   const onFinish = () => {
-    setError("")
+    setError("");
     if (!pin) {
       setError("Enter OTP");
       return;
@@ -43,7 +49,7 @@ const VerifyAccountForm = () => {
     }
 
     mutationVerify.mutateAsync({
-      pin,
+      code: pin,
       loginId: localStorage.getItem("em-reach") || "",
     });
   };
@@ -51,16 +57,17 @@ const VerifyAccountForm = () => {
   useEffect(() => {
     setInterval(() => {
       if (countdown !== "0") {
-        setCountdown((prev) => prev === "0" ? "0" : (Number(prev) - 1).toString());
+        setCountdown((prev) =>
+          prev === "0" ? "0" : (Number(prev) - 1).toString()
+        );
       }
     }, 1000);
   }, [countdown]);
 
   return (
     <div className="mt-5">
-        <p className="font-bold text-center text-red-700">{error}</p>
+      <p className="font-bold text-center text-red-700">{error}</p>
       <div className="flex justify-center items-center gap-8 mt-5">
-
         <PinField
           onChange={(e) => setPin(e)}
           length={6}
@@ -91,7 +98,12 @@ const VerifyAccountForm = () => {
         </div>
       </div>
 
-      <Button block className="mt-16" onClick={onFinish} loading={mutationVerify.isLoading || mutation.isLoading}>
+      <Button
+        block
+        className="mt-16"
+        onClick={onFinish}
+        loading={mutationVerify.isLoading || mutation.isLoading}
+      >
         Proceed
       </Button>
     </div>

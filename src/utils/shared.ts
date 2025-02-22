@@ -151,14 +151,6 @@ export const stripOffUrl = (url: string): Array<Record<string, string>> => {
   });
   return composeKeys;
 };
-export const composeSliderObj = (arr: Array<Record<string | number, any>>) =>
-  arr.reduce((acc, obj) => {
-    // Get the first property name in the object (assuming there's only one property per object)
-    const key = Object.keys(obj)[0];
-    // Assign the nested object to the corresponding key in the accumulator
-    acc[key] = obj[key];
-    return acc;
-  }, {});
 
 export const truncateText = (text: string, length: number) => {
   return text.length > length ? `${text.substring(0, length)}...` : text;

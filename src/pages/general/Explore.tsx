@@ -9,11 +9,14 @@ import { Tabs } from "antd";
 import VideoList from "../../components/shared/VideoList";
 import AudioList from "../../components/shared/AudioList";
 import { useQueryParams } from "../../components/shared/QuerySearch";
+import Upload from "../../components/modals/Upload";
+import { PreloadTokenCheck } from "../dashboard/effect";
 
 const Explore = () => {
   const [currentCategory, setCurrentCategory] = useState(0);
   const [defaultMediaType, setDefaultMediaType] = useState("video");
   const [defaultSearchText, setDefaultSearchText] = useState("");
+  const [token, setToken] = useState("");
 
   const query = useQueryParams();
 
@@ -44,9 +47,15 @@ const Explore = () => {
     const search = query[0]?.search;
     if (search) {
       setDefaultSearchText(search);
-      mutation.mutateAsync({ title: search, limit: 20, mediaCategoriesIds: currentCategory !== 0 ? [currentCategory] : [] })
+      mutation.mutateAsync({
+        title: search,
+        limit: 20,
+        mediaCategoriesIds: currentCategory !== 0 ? [currentCategory] : [],
+      });
     }
   }, []);
+
+  PreloadTokenCheck({ setToken, token });
 
   return (
     <Layout>
@@ -117,6 +126,8 @@ const Explore = () => {
           )}
         </div>
       )}
+
+      <Upload token={token} />
     </Layout>
   );
 };

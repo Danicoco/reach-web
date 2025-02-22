@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 const useAppStore = create<IStore>((set, get: any) => ({
+  uploadType: "audio",
   chatMessage: "",
   setChatMessage: (msg: string) => set({ chatMessage: msg }),
   onboarding: undefined,

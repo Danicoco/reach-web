@@ -42,6 +42,7 @@ export const instance = (
 };
 
 export const next = (e: AxiosError<{ message: string }>) => {
+  console.log(e);
   throw new Error(
     e.response?.data ? e.response.data.message : "Something went wrong"
   );

@@ -18,7 +18,6 @@ const LoginForm = () => {
       navigate("/dashboard")
     },
     onError: (e: Error) => {
-      console.log({ has: e.message.includes("not verified") })
       if (e.message.includes("not verified")) {
         navigate("/verify-account")
       }

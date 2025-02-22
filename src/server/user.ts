@@ -8,7 +8,7 @@ export const createAccount = async (body: Partial<IUser>) => {
 };
 
 export const verifyAccount = async (
-  body: Partial<{ loginId: string; pin: string }>
+  body: Partial<{ loginId: string; code: string }>
 ) => {
   const { data } = await instance()
     .post("/v1/auth/verify-otp", body)
@@ -82,7 +82,7 @@ export const getProfileData = async () => {
 
 export const updateProfile = async (values: Partial<IUser>) => {
   const { data } = await instance()
-    .patch(`/v1/users/profile`, values)
+    .put(`/v1/user/`, values)
     .catch((e) => next(e));
   return data?.data;
 };

@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet";
 import ProfileUsername from "../../components/forms/onboarding/Username";
-import Button from "../../library/Button";
 import { useState } from "react";
 import SetupProfile from "../../components/forms/onboarding/Profile";
 import UserInterest from "../../components/forms/onboarding/Interest";
@@ -9,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 const ProfileCreation = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
-
-  console.log({ step });
 
   return (
     <div className="h-screen px-5 py-5">
@@ -28,7 +25,7 @@ const ProfileCreation = () => {
               <h3 className="mb-16 text-[25px] font-bold">
                 Enter your Username
               </h3>
-              <ProfileUsername />
+              <ProfileUsername setStep={setStep} />
             </div>
           )}
 
@@ -38,9 +35,14 @@ const ProfileCreation = () => {
                 <h3 className="mb-8 text-[25px] font-bold">
                   Setup your profile
                 </h3>
-                <p className="primary-text mt-1 font-bold">Skip</p>
+                <p
+                  className="primary-text mt-1 font-bold"
+                  onClick={() => setStep((prev: number) => prev + 1)}
+                >
+                  Skip
+                </p>
               </div>
-              <SetupProfile />
+              <SetupProfile setStep={setStep} />
             </div>
           )}
 
@@ -48,18 +50,20 @@ const ProfileCreation = () => {
             <div className="">
               <div className="flex justify-between">
                 <h3 className="mb-8 text-[25px] font-bold">Interest</h3>
-                <p className="primary-text mt-1 font-bold">Skip</p>
+                <p
+                  className="primary-text mt-1 font-bold"
+                  onClick={() =>
+                    step === 3
+                      ? navigate("/dashboard")
+                      : setStep((prev: number) => prev + 1)
+                  }
+                >
+                  Skip
+                </p>
               </div>
               <UserInterest />
             </div>
           )}
-
-          <Button
-            className="my-8"
-            onClick={() => step === 3 ? navigate("/dashboard") : setStep((prev: number) => prev + 1)}
-          >
-            Proceed
-          </Button>
         </div>
       </div>
     </div>

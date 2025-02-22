@@ -1,6 +1,5 @@
 import { AES, enc } from "crypto-js";
 import { differenceInYears } from "date-fns";
-import { suggestedTopics } from "./utils/static";
 
 export const toBase64 = (file: File) =>
   new Promise((resolve, reject) => {
@@ -49,56 +48,6 @@ export const getGif = (arr: string[]) => {
   return getRandomItem(arr);
 };
 
-export const getSuggestions = ({
-  hobby,
-  interest,
-  all,
-  archetype,
-  challenges,
-}: {
-  hobby: string;
-  interest: string;
-  all: string;
-  challenges: string;
-  archetype: string;
-}) => {
-  const count = 4;
-  let hobbies = "";
-  let currChallenges = "";
-  let priority = "";
-
-  hobbies = hobby?.includes(",") ? shuffleArray(hobby.split(","))[0] : hobby;
-  priority = interest?.includes(",")
-    ? shuffleArray(interest.split(","))[0]
-    : interest;
-
-  currChallenges = challenges?.includes(",")
-    ? shuffleArray(challenges.split(","))[0]
-    : challenges;
-
-  const randomSelections = shuffleArray([
-    hobbies,
-    priority,
-    currChallenges,
-  ]).slice(0, 2);
-
-  const pickedArr = [all, archetype, ...randomSelections];
-
-  const data = [];
-  const values = Object.values(suggestedTopics);
-
-  for (let x = 0; x < count; x++) {
-    const topic: Record<string, string[]> | undefined = values.find((item) =>
-      item.hasOwnProperty(pickedArr[x]?.toLowerCase()?.trim())
-    );
-    if (topic) {
-      data.push(shuffleArray(topic[pickedArr[x]?.toLowerCase()?.trim()])[0]);
-    }
-  }
-
-  return data;
-};
-
 export const formatResponse = (text: string) => {
   const boldText = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   const textWithLinks = boldText.replace(
@@ -116,29 +65,4 @@ export const swapItems = (array: any[], i: number, j: number) => {
   }
 
   return array;
-};
-
-export const getMonthYear = () => {
-  const month = [
-    { name: "January", value: 0 },
-    { name: "February", value: 1 },
-    { name: "March", value: 2 },
-    { name: "April", value: 3 },
-    { name: "May", value: 4 },
-    { name: "June", value: 5 },
-    { name: "July", value: 6 },
-    { name: "August", value: 7 },
-    { name: "September", value: 8 },
-    { name: "October", value: 9 },
-    { name: "November", value: 10 },
-    { name: "December", value: 11 },
-  ];
-  let startYear = 1960;
-  const endYear = new Date().getFullYear();
-  const year: number[] = [];
-  while (startYear <= endYear) {
-    year.push(startYear);
-    startYear++;
-  }
-  return { month, year };
 };

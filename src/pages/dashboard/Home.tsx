@@ -1,15 +1,23 @@
-import Layout from "../../components/Layout";
 import { useState } from "react";
-import VideoList from "../../components/shared/VideoList";
-import AudioList from "../../components/shared/AudioList";
 import { useQuery } from "react-query";
-import { fetchMedia } from "../../server/assets";
+
+import Layout from "../../components/Layout";
 import Navbar from "../../components/Navbar";
+import { PreloadTokenCheck } from "./effect";
+import { fetchMedia } from "../../server/assets";
+import VideoList from "../../components/shared/VideoList";
+import Upload from "../../components/modals/Upload";
+import AudioList from "../../components/shared/AudioList";
 
 const Home = () => {
   const [section, setSection] = useState("video");
+  const [token, setToken] = useState("");
 
-  const { data, isLoading } = useQuery<IMedia[]>(["media", section], () => fetchMedia(1, 10, section));
+  const { data, isLoading } = useQuery<IMedia[]>(["media", section], () =>
+    fetchMedia(1, 10, section)
+  );
+  
+  PreloadTokenCheck({ setToken, token });
 
   return (
     <Layout>
@@ -35,10 +43,22 @@ const Home = () => {
         </div>
 
         <div className="mt-2">
-          {section === "video" && <VideoList videos={data?.filter(d => d.type === "video") || []} isLoading={isLoading} />}
-          {section === "audio" && <AudioList isLoading={isLoading} audios={data?.filter(d => d.type === "audio") || []} />}
+          {section === "video" && (
+            <VideoList
+              videos={data?.filter((d) => d.type === "video") || []}
+              isLoading={isLoading}
+            />
+          )}
+          {section === "audio" && (
+            <AudioList
+              isLoading={isLoading}
+              audios={data?.filter((d) => d.type === "audio") || []}
+            />
+          )}
         </div>
       </div>
+
+      <Upload token={token} />
     </Layout>
   );
 };

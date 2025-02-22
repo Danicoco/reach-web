@@ -7,6 +7,10 @@ export const ProcessDefaults = (navigate: NavigateFunction) => {
     const token = localStorage.getItem("access");
     const endTime = localStorage.getItem("access-endTime");
     const dayDiff = isAfter(new Date(endTime as string), new Date());
+    if (!endTime) {
+      localStorage.clear();
+      return;
+    }
     if (endTime && !dayDiff) {
       localStorage.clear();
       return;

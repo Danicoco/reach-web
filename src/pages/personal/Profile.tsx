@@ -37,7 +37,13 @@ const Profile = () => {
       ) : (
         <div>
           <div className="flex gap-4">
+            {data?.profile?.profilePicture ?
             <img src={data?.profile?.profilePicture || L} className="rounded-full h-[180px] w-[180px]" />
+          :
+          <div className="p-12 rounded-full border-1 border-1 border-black bg-slate-200">
+            <p className="font-bold text-2xl">{data?.profile.name.split(" ")[0].charAt(0)} {data?.profile.name.split(" ")[1].charAt(0)}</p>
+          </div>  
+          }
             <div className="mt-8">
               <p className="text-2xl font-bold">{data?.profile?.name}</p>
               <div className="flex gap-3">

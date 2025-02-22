@@ -90,12 +90,133 @@ interface IProfile {
 }
 
 type Asset = {
-    "title": string;
-    "limit": number;
-    "mediaCategoriesIds": number[]
-}
+  title: string;
+  limit: number;
+  mediaCategoriesIds: number[];
+};
+
+type ISpotifyTrack = {
+  album: {
+    album_type: string;
+    artists: { name: string; id: string }[];
+    available_markets: string[];
+    external_urls: { id: string };
+    href: string;
+    images: [{ url: string; height }];
+  };
+  artists: { name: string; id: string }[];
+  available_markets: string[];
+  disc_number: number;
+  duration_ms: number;
+  explicit: boolean;
+  external_ids: { isrc: string };
+  external_urls: { spotify: string };
+  href: string;
+  id: string;
+  is_local: boolean;
+  is_playable: boolean;
+  name: string;
+  popularity: number;
+  preview_url: string;
+  track_number: number;
+  type: "track" | "artist";
+  uri: string;
+};
+
+type IVimeoTrack = {
+  app: string;
+  categories: string[];
+  content_rating: string[];
+  content_rating_class: string;
+  created_time: Date;
+  description: string;
+  duration: number;
+  embed: { html: string; badges: string; interactive: boolean };
+  has_audio: boolean;
+  height: number;
+  is_playable: boolean;
+  language: string;
+  license: string;
+  link: string;
+  metadata: {
+    connections: string;
+    interactions: string;
+    is_vimeo_create: boolean;
+    is_screen_record: boolean;
+  };
+  modified_time: Date;
+  name: string;
+  pictures: {
+    uri: string;
+    active: boolean;
+    type: string;
+    base_link: string;
+    sizes: object[];
+  };
+  play: { status: string };
+  player_embed_url: string;
+  privacy: {
+    view: string;
+    embed: string;
+    download: boolean;
+    add: boolean;
+    comments: string;
+  };
+  rating_mod_locked: boolean;
+  release_time: Date;
+  resource_key: string;
+  stats: { plays: string };
+  status: string;
+  tags: string[];
+  transcode: string;
+  type: string;
+  upload: string;
+  uploader: any;
+  uri: string;
+  user: {
+    uri: string;
+    name: string;
+    link: string;
+    capabilities: any;
+    location: string;
+  };
+  width: number;
+};
+
+type IYouTubeTrack = {
+  etag: string;
+  id: { kind: string; videoId: string };
+  kind: string;
+  snippet: {
+    channelId: string;
+    channelTitle: string;
+    description: string;
+    liveBroadcastContent: string;
+    publishTime: Date;
+    publishedAt: Date;
+    thumbnails: {
+      default: {
+        height: number;
+        url: string;
+        width: number;
+      };
+      high: {
+        height: number;
+        url: string;
+        width: number;
+      };
+      medium: {
+        height: number;
+        url: string;
+        width: number;
+      };
+    };
+    title: string;
+  };
+};
 
 interface IStore {
+  uploadType: "video" | "audio" | "blog";
   chatMessage: string;
   fromTrending: boolean;
   voteSelection: { reference: string; voteType: string };
