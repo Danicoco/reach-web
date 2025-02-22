@@ -64,11 +64,11 @@ const AudioDetails = () => {
                     setOpen(true)
                   } else {
                     localStorage.setItem("spy-id", `/dashboard/listen/${id}`);
-                    window.location.href = `${
+                    window.open(`${
                       import.meta.env.VITE_SPOTIFY_LINK
                     }&redirect_uri=${import.meta.env.VITE_SPOTIFY_REDIRECT}${
                       import.meta.env.VITE_SPOTIFY_SCOPE
-                    }`
+                    }`, "_blank");
                   }
                 }
                 }
