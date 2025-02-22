@@ -59,14 +59,18 @@ const AudioDetails = () => {
               <img
                 src={PlayIcon}
                 className="cursor-pointer"
-                onClick={() =>
-                  token
-                    ? setOpen(true)
-                    : (window.location.href = `${
-                        import.meta.env.VITE_SPOTIFY_LINK
-                      }&redirect_uri=${import.meta.env.VITE_SPOTIFY_REDIRECT}${
-                        import.meta.env.VITE_SPOTIFY_SCOPE
-                      }`)
+                onClick={() => {
+                  if (token) {
+                    setOpen(true)
+                  } else {
+                    localStorage.setItem("spy-id", `/dashboard/listen/${id}`);
+                    window.location.href = `${
+                      import.meta.env.VITE_SPOTIFY_LINK
+                    }&redirect_uri=${import.meta.env.VITE_SPOTIFY_REDIRECT}${
+                      import.meta.env.VITE_SPOTIFY_SCOPE
+                    }`
+                  }
+                }
                 }
               />
             )}

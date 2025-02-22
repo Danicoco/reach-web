@@ -14,6 +14,7 @@ import AudioDetails from "../pages/dashboard/AudioDetails";
 import Notification from "../pages/personal/Notification";
 import Explore from "../pages/general/Explore";
 import VideoDetails from "../pages/dashboard/VideoDetails";
+import SpotifyRedirect from "../pages/dashboard/SpotifyRedirect";
 
 const PrivateRoutes = () => {
   return (
@@ -32,6 +33,7 @@ const PrivateRoutes = () => {
         <Route element={<Authenticated />}>
           <Route path="/dashboard" element={<Home />} />
           <Route path="/dashboard/listen/:id" element={<AudioDetails />} />
+          <Route path="/dashboard/audio" element={<SpotifyRedirect />} />
           <Route path="/dashboard/watch/:id" element={<VideoDetails />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/notifications" element={<Notification />} />
