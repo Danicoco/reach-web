@@ -46,8 +46,8 @@ const AudioDetails = () => {
 
   return (
     <Layout>
-      <Navbar />
       <div className="sm:mx-0 ml-5">
+        <Navbar />
         <div
           style={{ backgroundImage: `url(${data?.coverPicture})` }}
           className="w-full sm:h-[350px] h-[250px] rounded-xl"
@@ -87,7 +87,7 @@ const AudioDetails = () => {
           </div>
         </div>
 
-        <div className="flex justify-between mt-10">
+        <div className="sm:flex sm:justify-between mt-10">
           <div className="flex gap-3">
             {data?.profilePicture ? (
               <img
@@ -110,7 +110,7 @@ const AudioDetails = () => {
             </div>
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex gap-5 sm:mt-0 mt-5">
             <Button
               disabled={data?.isSubscribed}
               color={data?.isSubscribed ? "white" : "none"}
@@ -134,7 +134,7 @@ const AudioDetails = () => {
           itemId={String(data?.itemId)}
         />
 
-        <div className="my-10">
+        <div className="mt-10 mb-20">
           <h3 className="text-[#6601FF] font-[600] sm:text-[20px] text-[16px] mb-3">
             Related Audios
           </h3>

@@ -1,5 +1,6 @@
 import { formatCurrency } from "./utils";
 
+
 export const transactionColumn = [
   {
     title: "Wallet",

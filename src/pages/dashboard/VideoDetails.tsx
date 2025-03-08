@@ -40,11 +40,11 @@ const VideoDetails = () => {
 
   return (
     <Layout>
-      <Navbar />
       {videoLoading ? (
         <Loading />
       ) : (
         <div className="sm:mx-0 ml-5">
+          <Navbar />
           <div
             //   style={{ backgroundImage: `url(${data?.coverPicture})` }}
             className="w-full sm:h-[350px] h-[250px] rounded-xl"
@@ -78,7 +78,7 @@ const VideoDetails = () => {
             </div>
           </div>
 
-          <div className="flex justify-between mt-10">
+          <div className="sm:flex flex-wrap sm:justify-between mt-10">
             <div className="flex gap-3">
               {data?.profilePicture ? (
                 <img
@@ -89,7 +89,7 @@ const VideoDetails = () => {
                 <div className="h-[50px] w-[50px] rounded-full border-[1px] bg-[#6601FF]">
                   <div className="flex items-center justify-center h-full">
                     <p className="text-center text-white">
-                      {data?.owner?.split(" ")[0].charAt(0)}{" "}
+                      {data?.owner?.split(" ")[0].charAt(0)}{""}
                       {data?.owner?.split(" ")[1].charAt(0)}
                     </p>
                   </div>
@@ -101,7 +101,7 @@ const VideoDetails = () => {
               </div>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex gap-5 sm:mt-0 mt-5">
               <Button
                 disabled={data?.isSubscribed}
                 color={data?.isSubscribed ? "white" : "none"}

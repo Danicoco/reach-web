@@ -1,37 +1,16 @@
 import { ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { LogOut, User, Bell, Search, Home } from "react-feather";
+import { LogOut } from "react-feather";
 
 import { appLogout } from "../utils/shared";
+import { navigationData } from "./navigationData";
+import MobileNavigation from "./MobileNavigation";
 
 type Props = {
   header?: string;
   children: ReactNode;
   subHeader?: ReactNode;
 };
-
-const navigationData = [
-  {
-    icon: <Home />,
-    name: "Home",
-    link: "/dashboard",
-  },
-  {
-    icon: <Search />,
-    name: "Search",
-    link: "/explore",
-  },
-  {
-    icon: <Bell />,
-    name: "Notification",
-    link: "/notifications",
-  },
-  {
-    icon: <User />,
-    name: "Profile",
-    link: "/profile",
-  },
-];
 
 const Layout = ({ children, header, subHeader }: Props) => {
   const navigate = useNavigate();
@@ -70,12 +49,16 @@ const Layout = ({ children, header, subHeader }: Props) => {
           </div>
         </div>
       </div>
-      <div className="sm:w-[80%] w-full">
+
+      <div className="sm:w-[80%] w-full relative">
         <div className="flex justify-between mt-5">
           <p className="text-[32px] font-[400]">{header}</p>
           <div>{subHeader}</div>
         </div>
         {children}
+        <div className="block sm:hidden bottom-0">
+          <MobileNavigation />
+        </div>
       </div>
     </div>
   );

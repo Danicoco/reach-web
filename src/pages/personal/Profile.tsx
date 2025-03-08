@@ -35,18 +35,24 @@ const Profile = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div>
-          <div className="flex gap-4">
-            {data?.profile?.profilePicture ?
-            <img src={data?.profile?.profilePicture || L} className="rounded-full h-[180px] w-[180px]" />
-          :
-          <div className="p-12 rounded-full border-1 border-1 border-black bg-slate-200">
-            <p className="font-bold text-2xl">{data?.profile.name.split(" ")[0].charAt(0)} {data?.profile.name.split(" ")[1].charAt(0)}</p>
-          </div>  
-          }
+        <div className="mx-2">
+          <div className="flex sm:justify-normal justify-between gap-4">
+            {data?.profile?.profilePicture ? (
+              <img
+                src={data?.profile?.profilePicture || L}
+                className="rounded-full sm:h-[180px] sm:w-[180px]"
+              />
+            ) : (
+              <div className="sm:p-12 p-8 rounded-full border-1 border-1 sm:mt-0 mt-4 border-black bg-slate-200 sm:w-[130px] sm:h-[120px] w-[100px] h-[80px]">
+                <p className="font-bold sm:text-[1.3rem] text-[0.72rem]">
+                  {data?.profile.name.split(" ")[0].charAt(0)}{" "}
+                  {data?.profile.name.split(" ")[1].charAt(0)}
+                </p>
+              </div>
+            )}
             <div className="mt-8">
               <p className="text-2xl font-bold">{data?.profile?.name}</p>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <div className="flex gap-1">
                   <p className="mt-1">@{data?.profile?.userName}</p>
                   <span className="text-lg">.</span>

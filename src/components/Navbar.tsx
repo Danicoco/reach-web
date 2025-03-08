@@ -70,12 +70,13 @@ const Navbar = ({ mutation, from, defaultSearchText }: Props) => {
             </div>
 
             <div
-              onClick={() =>
+               onClick={() => {
+                setOpen(false);
                 useAppStore.setState({
                   modal: { open: true, type: "upload" },
                   uploadType: "audio",
-                })
-              }
+                });
+              }}
               className="flex gap-3 p-3 hover:bg-slate-200 hover:rounded-xl hover:cursor-pointer"
             >
               <Music />

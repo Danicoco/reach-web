@@ -22,7 +22,9 @@ const Home = () => {
   return (
     <Layout>
       <div>
+        <div className="mx-3">
         <Navbar from="Home" />
+        </div>
         <div className="flex gap-5 justify-center items-center sm:justify-start sm:items-start sm:px-0 px-2 mb-5">
           <p
             onClick={() => setSection("video")}

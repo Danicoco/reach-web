@@ -59,13 +59,13 @@ const Explore = () => {
 
   return (
     <Layout>
-      <Navbar mutation={mutation} defaultSearchText={defaultSearchText} />
       {isLoading ? (
         <Loading />
       ) : (
-        <div>
+        <div className="mx-2">
+          <Navbar mutation={mutation} defaultSearchText={defaultSearchText} />
           {data?.length && (
-            <div>
+            <div className="">
               <div className="flex gap-2">
                 {[{ name: "All", id: 0 }, ...data].map(
                   (category: { name: string; id: number }) => (
