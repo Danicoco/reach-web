@@ -9,7 +9,7 @@ const MobileNavigation = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white shadow-md">
+    <div className="fixed bottom-0 bg-white shadow-md flex justify-center items-center w-full overflow-x-scroll">
       {open && (
         <div className="rounded-xl px-1 bg-slate-400 ml-2 mt-[1px] py-3 ">
           <div
@@ -41,7 +41,7 @@ const MobileNavigation = () => {
           </div>
         </div>
       )}
-      <div className="flex gap-4 justify-around p-2">
+      <div className="flex gap-3 justify-round w-[95%] p-2">
         {mobileNavigationData.map((nav) => (
           <div
             key={nav.link}

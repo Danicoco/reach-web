@@ -56,7 +56,7 @@ const Layout = ({ children, header, subHeader }: Props) => {
           <div>{subHeader}</div>
         </div>
         {children}
-        <div className="block sm:hidden bottom-0">
+        <div className="sm:hidden block">
           <MobileNavigation />
         </div>
       </div>
