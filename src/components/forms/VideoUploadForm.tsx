@@ -87,6 +87,10 @@ const VideoUploadForm = ({
 
   const onFinish = (values: any) => {
     setError("");
+    if (!coverPicture) {
+      setError("Please add cover picture");
+      return;
+    }
     setStep((prev) => (prev !== 3 ? prev + 1 : 3));
     if (step !== 3) {
       setMeta({

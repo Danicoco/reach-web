@@ -47,12 +47,16 @@ const VideoDetails = () => {
           <Navbar />
           <div
             //   style={{ backgroundImage: `url(${data?.coverPicture})` }}
-            className="w-full sm:h-[350px] h-[250px] rounded-xl"
+            className="w-full sm:h-[500px] h-[250px] rounded-xl"
           >
             {data?.platform?.toLowerCase() === "youtube" ? (
               <iframe
                 className="w-full h-full"
-                src={`https://www.youtube.com/embed/${data?.itemId}`}
+                src={`${import.meta.env.VITE_PLAYER}/youtube?uri=${
+                  data?.itemId
+                }&access=${localStorage.getItem("access")}&height=450&mediaId=${
+                  data?.id
+                }`}
                 title={data?.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
@@ -61,7 +65,9 @@ const VideoDetails = () => {
             ) : (
               <iframe
                 className="w-full h-full"
-                src={`https://player.vimeo.com/video/${data?.itemId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
+                src={`${import.meta.env.VITE_PLAYER}/vimeo?uri=${
+                  data?.itemId
+                }&access=${localStorage.getItem("access")}&mediaId=${data?.id}`}
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                 title={data?.title}
               ></iframe>
@@ -89,7 +95,8 @@ const VideoDetails = () => {
                 <div className="h-[50px] w-[50px] rounded-full border-[1px] bg-[#6601FF]">
                   <div className="flex items-center justify-center h-full">
                     <p className="text-center text-white">
-                      {data?.owner?.split(" ")[0].charAt(0)}{""}
+                      {data?.owner?.split(" ")[0].charAt(0)}
+                      {""}
                       {data?.owner?.split(" ")[1].charAt(0)}
                     </p>
                   </div>

@@ -23,8 +23,8 @@ const SpotifyDrawer = ({ id, token, itemId, open }: Props) => {
         allow="encrypted-media *; autoplay;"
         loading="lazy"
         src={`${
-          import.meta.env.VITE_SPOTIFY_PLAYER
-        }?token=${token}&uri=${itemId}`}
+          import.meta.env.VITE_PLAYER
+        }/spotify?token=${token}&uri=${itemId}&mediaId=${id}&access=${localStorage.getItem("access")}`}
         className="w-full flex justify-center items-center"
       />
     </Drawer>
