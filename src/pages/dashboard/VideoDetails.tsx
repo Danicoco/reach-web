@@ -92,9 +92,9 @@ const VideoDetails = () => {
                   className="h-[50px] w-[50px] rounded-full"
                 />
               ) : (
-                <div className="h-[50px] w-[50px] rounded-full border-[1px] bg-[#6601FF]">
+                <div className="h-[50px] w-[50px] rounded-full border-[1px] dark:bg-[#6601FF]">
                   <div className="flex items-center justify-center h-full">
-                    <p className="text-center text-white">
+                    <p className="text-center dark:text-white">
                       {data?.owner?.split(" ")[0].charAt(0)}
                       {""}
                       {data?.owner?.split(" ")[1].charAt(0)}

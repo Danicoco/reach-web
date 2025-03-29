@@ -43,7 +43,7 @@ const Profile = () => {
                 className="rounded-full sm:h-[180px] sm:w-[180px]"
               />
             ) : (
-              <div className="sm:p-12 p-8 rounded-full border-1 border-1 sm:mt-0 mt-4 border-black bg-slate-200 sm:w-[130px] sm:h-[120px] w-[100px] h-[80px]">
+              <div className="sm:p-12 p-8 rounded-full border-1 border-1 sm:mt-0 mt-4 border-black dark:bg-slate-200 sm:w-[130px] sm:h-[120px] w-[100px] h-[80px]">
                 <p className="font-bold sm:text-[1.3rem] text-[0.72rem]">
                   {data?.profile.name.split(" ")[0].charAt(0)}{" "}
                   {data?.profile.name.split(" ")[1].charAt(0)}
@@ -79,7 +79,7 @@ const Profile = () => {
           </div>
 
           <div className="flex gap-3 mt-5">
-            <div className="bg-[#6601FF] px-5 py-2 text-white rounded-xl">
+            <div className="dark:bg-[#6601FF] px-5 py-2 dark:text-white rounded-xl">
               <p>Reach Balance</p>
               <p>
                 $
@@ -89,7 +89,7 @@ const Profile = () => {
               </p>
             </div>
 
-            <div className="bg-[#14C242] px-5 py-2 text-white rounded-xl">
+            <div className="dark:bg-[#14C242] px-5 py-2 text-white rounded-xl">
               <p>Wallet Balance</p>
               <p>
                 $
@@ -102,7 +102,7 @@ const Profile = () => {
 
           <Tabs
             defaultActiveKey="1"
-            className="mt-5"
+            className="mt-5 dark:text-white"
             items={[
               {
                 label: "Videos",

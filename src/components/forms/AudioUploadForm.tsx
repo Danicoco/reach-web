@@ -171,7 +171,7 @@ const AudioUploadForm = ({ title, itemId, duration, setCompleted }: Props) => {
           </Form.Item>
 
           <Upload {...props} className="w-full">
-            <div className="p-3 rounded-full w-full text-center border-[1px] border-[#6601FF]">
+            <div className="p-3 rounded-full w-full text-center border-[1px] dark:border-[#6601FF]">
               <p>Upload Cover Picture</p>
             </div>
           </Upload>
@@ -224,7 +224,7 @@ const AudioUploadForm = ({ title, itemId, duration, setCompleted }: Props) => {
             </div>
           </Form.Item>
 
-          <div className="bg-[#6601FF] text-white p-3 rounded-xl my-2">
+          <div className="dark:bg-[#6601FF] dark:text-white p-3 rounded-xl my-2">
             <p className="text-xs">Reach Budget</p>
             <p className="text-lg">
               {profileLoading

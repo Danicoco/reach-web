@@ -66,13 +66,13 @@ const VerifyAccountForm = () => {
 
   return (
     <div className="mt-5">
-      <p className="font-bold text-center text-red-700">{error}</p>
+      <p className="font-bold text-center dark:text-red-700">{error}</p>
       <div className="flex justify-center items-center gap-8 mt-5">
         <PinField
           onChange={(e) => setPin(e)}
           length={6}
           inputMode="numeric"
-          className="h-[40px] bg-transparent w-[40px] border-[#1D2D50] border-2 text-black rounded-xl text-center ml-2"
+          className="h-[40px] bg-transparent w-[40px] dark:border-[#1D2D50] border-2 dark:text-black rounded-xl text-center ml-2"
         />
       </div>
 

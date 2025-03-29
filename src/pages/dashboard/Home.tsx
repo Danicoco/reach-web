@@ -29,7 +29,7 @@ const Home = () => {
           <p
             onClick={() => setSection("video")}
             className={`rounded-full px-5 py-2 ${
-              section === "video" ? "bg-[#6601FF] text-white" : "cursor-pointer"
+              section === "video" ? "dark:bg-[#6601FF] dark:text-white" : "cursor-pointer"
             }`}
           >
             Video
@@ -37,7 +37,7 @@ const Home = () => {
           <p
             onClick={() => setSection("audio")}
             className={`rounded-full px-5 py-2 ${
-              section === "audio" ? "bg-[#6601FF] text-white" : "cursor-pointer"
+              section === "audio" ? "dark:bg-[#6601FF] dark:text-white" : "cursor-pointer"
             }`}
           >
             Audio

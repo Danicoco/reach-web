@@ -32,7 +32,7 @@ const MakePayment = ({
         </div>
       </div>
 
-      <div className="p-1 border-[1px] bg-slate-500 my-3 rounded-xl"></div>
+      <div className="p-1 border-[1px] dark:bg-slate-500 my-3 rounded-xl"></div>
 
       <div>
         <p className="text-xl font-bold">Wallet</p>
@@ -44,7 +44,7 @@ const MakePayment = ({
               {paymentType === "wallet1" ? <CheckCircle /> : <Circle />}
             </div>
           </div>
-          <div className="bg-[#6601FF] text-white px-3 py-6 rounded-xl my-2">
+          <div className="dark:bg-[#6601FF] dark:text-white px-3 py-6 rounded-xl my-2">
             <p className="text-xs">Amount</p>
             <p className="text-lg font-bold">
               {profileLoading
@@ -61,7 +61,7 @@ const MakePayment = ({
               {paymentType === "wallet2" ? <CheckCircle /> : <Circle />}
             </div>
           </div>
-          <div className="bg-[#14C242] text-white px-3 py-6 rounded-xl my-2">
+          <div className="dark:bg-[#14C242] dark:text-white px-3 py-6 rounded-xl my-2">
             <p className="text-xs">Amount</p>
             <p className="text-lg font-bold">
               {profileLoading

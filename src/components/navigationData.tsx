@@ -25,35 +25,35 @@ export const navigationData = [
 
 export const mobileNavigationData = [
   {
-    icon: (fill: string) => <Home fill={fill} />,
+    icon: () => <Home className="dark:text-[#6601FF]" />,
     fillColor: "#6601FF",
     color: "#000",
     name: "Home",
     link: "/dashboard",
   },
   {
-    icon: (fill: string) => <Search fill={fill} />,
+    icon: () => <Search className="dark:text-[#6601FF]" />,
     fillColor: "#6601FF",
     color: "#000",
     name: "Search",
     link: "/explore",
   },
   {
-    icon: (_fill: string) => <PlusCircle color="#fff" fill="#2E0173" size={35} />,
+    icon: () => <PlusCircle color="#fff" fill="#2E0173" size={35} />,
     fillColor: "#2E0173",
     color: "#2E0173",
     name: "",
     link: "",
   },
   {
-    icon: (fill: string) => <Bell fill={fill} />,
+    icon: () => <Bell className="dark:text-[#6601FF]" />,
     fillColor: "#6601FF",
     color: "#000",
     name: "Notification",
     link: "/notifications",
   },
   {
-    icon: (fill: string) => <User fill={fill} />,
+    icon: () => <User className="dark:text-[#6601FF]" />,
     fillColor: "#6601FF",
     color: "#000",
     name: "Profile",

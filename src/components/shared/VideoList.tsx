@@ -32,22 +32,22 @@ const VideoList = ({ videos, isLoading }: Props) => {
                 <div className="flex gap-3">
                   <img
                     src={video.profilePicture}
-                    className="h-[35px] w-[35px] rounded-full border-[1px] border-black bg-slate-500 p-2"
+                    className="h-[35px] w-[35px] rounded-full border-[1px] border-black dark:bg-slate-500 p-2"
                   />
                   <div className="flex flex-col gap-2">
-                    <p className="font-extrabold text-xs truncate flex-wrap">
+                    <p className="font-extrabold text-xs truncate flex-wrap dark:text-white">
                       {video.title}
                     </p>
                     <div className="flex gap-1">
-                      <p className="primary-text text-xs">{video.title}</p>
-                      <span className="mb-1">.</span>
-                      <p className="text-xs"> {video.totalNoStreams} streams</p>
-                      <span className="mb-1">.</span>
-                      <p className="text-xs">{video.duration} minutes</p>
+                      <p className="primary-text mt-1 text-xs dark:text-[#f1f1f1]">{video.owner}</p>
+                      <span className="mb-2 dark:text-[#f1f1f1]">|</span>
+                      <p className="text-xs mt-1 dark:text-[#f1f1f1]"> {video.totalNoStreams} streams</p>
+                      <span className="mb-2 dark:text-[#f1f1f1]">|</span>
+                      <p className="text-xs mt-1 dark:text-[#f1f1f1]">{video.duration} minutes</p>
                     </div>
                   </div>
                 </div>
-                <MoreVertical fill="black" />
+                <MoreVertical className="dark:text-white text-black" />
               </div>
             </div>
           ))}

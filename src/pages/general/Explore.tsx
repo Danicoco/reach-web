@@ -72,8 +72,8 @@ const Explore = () => {
                     <div
                       className={`px-2 py-[5px] ${
                         category.id === currentCategory
-                          ? "bg-[#6601FF] text-white"
-                          : "bg-[#E0E0E0] text-black"
+                          ? "dark:bg-[#6601FF] dark:text-white"
+                          : "dark:bg-[#E0E0E0] dark:text-black"
                       } rounded-md w-[60px] cursor-pointer`}
                       key={category.name}
                       onClick={() => setCurrentCategory(category.id)}
@@ -91,7 +91,7 @@ const Explore = () => {
           ) : (
             <Tabs
               defaultActiveKey={defaultMediaType}
-              className="mt-5"
+              className="mt-5 dark:text-white"
               items={[
                 {
                   label: "Videos",
@@ -110,6 +110,7 @@ const Explore = () => {
                 {
                   label: "Audios",
                   key: "audio",
+                  className: "dark:text-[#f1f1f1]",
                   children: (
                     <AudioList
                       audios={

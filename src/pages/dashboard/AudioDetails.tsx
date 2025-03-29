@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Pause } from "react-feather";
+import { Heart } from "react-feather";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 
@@ -54,7 +54,8 @@ const AudioDetails = () => {
         >
           <div className="flex items-center justify-center h-full">
             {open ? (
-              <Pause size={70} color="white" />
+              // <Pause size={70} color="white" />
+              <></>
             ) : (
               <img
                 src={PlayIcon}
@@ -95,9 +96,9 @@ const AudioDetails = () => {
                 className="h-[50px] w-[50px] rounded-full"
               />
             ) : (
-              <div className="h-[50px] w-[50px] rounded-full border-[1px] bg-[#6601FF]">
+              <div className="h-[50px] w-[50px] rounded-full border-[1px] dark:bg-[#6601FF]">
                 <div className="flex items-center justify-center h-full">
-                  <p className="text-center text-white">
+                  <p className="text-center dark:text-white">
                     {data?.owner?.split(" ")[0].charAt(0)}{" "}
                     {data?.owner?.split(" ")[1].charAt(0)}
                   </p>
@@ -135,7 +136,7 @@ const AudioDetails = () => {
         />
 
         <div className="mt-10 mb-20">
-          <h3 className="text-[#6601FF] font-[600] sm:text-[20px] text-[16px] mb-3">
+          <h3 className="text-[#6601FF] dark:text-white font-[600] sm:text-[20px] text-[16px] mb-3">
             Related Audios
           </h3>
           <AudioList audios={relatedData || []} isLoading={isLoading} />

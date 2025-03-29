@@ -4,16 +4,16 @@
 @tailwind utilities;
 
 body {
-  color: #1d2d50;
+  @apply text-[#1d2d50] dark:text-white;
   margin: 0 auto;
   padding: auto;
   font-family: "Inter", sans-serif;
-  background-color: #FCFAFF;
+  @apply dark:bg-[#0f0f0f] bg-[#FCFAFF];
   /* background-color: #f5f1e6; */
 }
 
 .primary-text {
-  color: #6601FF;
+  @apply dark:text-[#6601FF];
 }
 
 .home-header {
@@ -26,7 +26,7 @@ body {
 }
 
 .secondary-cr {
-  @apply text-[#0DF6FE];
+  @apply dark:text-[#0DF6FE];
 }
 
 .modal-bg {
@@ -180,8 +180,8 @@ body {
   border: 0;
 }
 
-.ant-input css-dev-only-do-not-override-txh9fw {
-  background-color: transparent;
+:where(.css-dev-only-do-not-override-txh9fw).ant-input {
+  @apply bg-transparent;
 }
 
 .flyover-container {
@@ -277,7 +277,7 @@ body {
 }
 
 .ant-input::placeholder {
-  color: #000;
+  @apply text-black dark:text-[#f1f1f1];
 }
 
 @keyframes fill {

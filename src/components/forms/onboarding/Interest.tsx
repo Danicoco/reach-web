@@ -58,7 +58,7 @@ const UserInterest = () => {
 
   return (
     <div>
-      <h5 className="font-extrabold text-[18px]">Categories</h5>
+      <h5 className="font-extrabold dark:text-[18px]">Categories</h5>
       <div className="flex gap-3 overflow-x-scroll w-full mt-5">
         {categories.map((category) => (
           <div
@@ -74,7 +74,7 @@ const UserInterest = () => {
               })
             }
             key={category}
-            className="rounded-md border-[1px] h-[50px] text-[16px] border-[#6601FF] bg-[#6601FF] text-white p-2 w-full"
+            className="rounded-md dark:border-[1px] h-[50px] dark:text-[16px] dark:border-[#6601FF] dark:bg-[#6601FF] dark:text-white p-2 w-full"
           >
             {category}
           </div>
@@ -83,7 +83,7 @@ const UserInterest = () => {
 
       <Divider />
 
-      <h5 className="font-extrabold text-[18px]">Sports</h5>
+      <h5 className="font-extrabold dark:text-[18px]">Sports</h5>
       <div className="flex flex-wrap gap-3 mt-5">
         {sports.map((sport) => (
           <div
@@ -98,10 +98,10 @@ const UserInterest = () => {
               })
             }
             key={sport}
-            className={`text-[16px] ${
+            className={`dark:text-[16px] ${
               selectedSports?.includes(sport)
-                ? "border-[#6601FF] bg-[#6601FF] text-white"
-                : "border-[#F3EBFF] bg-[#F3EBFF] text-black"
+                ? "dark:border-[#6601FF] dark:bg-[#6601FF] dark:text-white"
+                : "dark:border-[#F3EBFF] dark:bg-[#F3EBFF] dark:text-black"
             } p-2 rounded-full`}
           >
             {sport}
@@ -111,7 +111,7 @@ const UserInterest = () => {
 
       <Divider />
 
-      <h5 className="font-extrabold text-[18px]">Music</h5>
+      <h5 className="font-extrabold dark:text-[18px]">Music</h5>
       <div className="flex flex-wrap gap-3 mt-5">
         {music.map((mus) => (
           <div
@@ -126,10 +126,10 @@ const UserInterest = () => {
             })
           }
             key={mus}
-            className={`text-[16px] ${
+            className={`dark:text-[16px] ${
               selectedMusic?.includes(mus)
-                ? "border-[#6601FF] bg-[#6601FF] text-white"
-                : "border-[#F3EBFF] bg-[#F3EBFF] text-black"
+                ? "dark:border-[#6601FF] dark:bg-[#6601FF] dark:text-white"
+                : "dark:border-[#F3EBFF] dark:bg-[#F3EBFF] dark:text-black"
             } p-2 rounded-full`}
           >
             {mus}
@@ -138,7 +138,7 @@ const UserInterest = () => {
       </div>
       <Divider />
 
-      <h5 className="font-extrabold text-[18px]">Gaming</h5>
+      <h5 className="font-extrabold dark:text-[18px]">Gaming</h5>
       <div className="flex flex-wrap gap-3 mt-5">
         {gaming.map((game) => (
           <div
@@ -153,10 +153,10 @@ const UserInterest = () => {
             })
           }
             key={game}
-            className={`text-[16px] ${
+            className={`dark:text-[16px] ${
               selectedGaming?.includes(game)
-                ? "border-[#6601FF] bg-[#6601FF] text-white"
-                : "border-[#F3EBFF] bg-[#F3EBFF] text-black"
+                ? "dark:border-[#6601FF] dark:bg-[#6601FF] dark:text-white"
+                : "dark:border-[#F3EBFF] dark:bg-[#F3EBFF] dark:text-black"
             } p-2 rounded-full`}
           >
             {game}

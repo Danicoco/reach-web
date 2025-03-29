@@ -235,7 +235,7 @@ const VideoUploadForm = ({
             </div>
           </Form.Item>
 
-          <div className="bg-[#6601FF] text-white p-3 rounded-xl my-2">
+          <div className="dark:bg-[#6601FF] dark:text-white p-3 rounded-xl my-2">
             <p className="text-xs">Reach Budget</p>
             <p className="text-lg">
               {profileLoading

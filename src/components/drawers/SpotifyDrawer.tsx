@@ -1,4 +1,3 @@
-import { Drawer } from "antd";
 
 type Props = {
   id: string;
@@ -9,25 +8,22 @@ type Props = {
 
 const SpotifyDrawer = ({ id, token, itemId, open }: Props) => {
   return (
-    <Drawer
-      title={null}
-      placement="bottom"
-      closable={false}
-      destroyOnClose
-      open={open}
-      key={id}
-      height={100}
-      className="overflow-hidden"
-    >
-      <iframe
-        allow="encrypted-media *; autoplay;"
-        loading="lazy"
-        src={`${
-          import.meta.env.VITE_PLAYER
-        }/spotify?token=${token}&uri=${itemId}&mediaId=${id}&access=${localStorage.getItem("access")}`}
-        className="w-full flex justify-center items-center"
-      />
-    </Drawer>
+    <div className="fixed bottom-0 left-0 w-full text-center shadow-md">
+      {open && (
+        <div className="">
+          <iframe
+            allow="encrypted-media *; autoplay;"
+            loading="lazy"
+            src={`${
+              import.meta.env.VITE_PLAYER
+            }/spotify?token=${token}&uri=${itemId}&mediaId=${id}&access=${localStorage.getItem(
+              "access"
+            )}`}
+            className="w-full flex justify-center items-center"
+          />
+        </div>
+      )}
+    </div>
   );
 };
 

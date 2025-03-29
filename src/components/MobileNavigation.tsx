@@ -11,7 +11,7 @@ const MobileNavigation = () => {
   return (
     <div className="fixed bottom-0 bg-white shadow-md flex justify-center items-center w-full overflow-x-scroll">
       {open && (
-        <div className="rounded-xl px-1 bg-slate-400 ml-2 mt-[1px] py-3 ">
+        <div className="rounded-xl px-1 dark:bg-slate-400 ml-2 mt-[1px] py-3 ">
           <div
             onClick={() => {
               setOpen(false);
@@ -50,15 +50,11 @@ const MobileNavigation = () => {
             }
             className="p-2 flex flex-col items-center cursor-pointer"
           >
-            <div className="flex justify-center items-center">
-              {nav.icon(
-                location.pathname.includes(nav.link) ? "#2E0173" : "#fff"
-              )}
-            </div>
+            <div className="flex justify-center items-center">{nav.icon()}</div>
             {nav.name && (
               <span
                 className={`text-sm ${
-                  location.pathname.includes(nav.link) ? "text-[@2E0173]" : ""
+                  location.pathname.includes(nav.link) ? "dark:text-[#2E0173] text-[#2E0173]" : "text-[#2E0173]"
                 }`}
               >
                 {nav.name}
